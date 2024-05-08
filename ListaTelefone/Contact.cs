@@ -11,37 +11,30 @@ namespace ListaTelefone
     internal class Contact
     {
         string Name;
-        PhoneNumberList PhoneList;
+        List<Phone> Phones = new();
         Address Address;
         string Email;
 
-        Contact Next;
-
-        public Contact(string name, PhoneNumberList phone, Address address, string email)
+        public Contact(string name, List<Phone> phones, Address address, string email)
         {
             Name = name;
-            PhoneList = phone; 
+            Phones = phones; 
             Address = address;
             Email = email;
-            Next = null;
         }
 
         public string GetName()
         {
             return Name;
         }
-        public void SetNext(Contact nextContact)
-        {
-            Next = nextContact;
-        }
-        public Contact GetNext()
-        {
-            return Next;
-        }
         public void SetName(string name)
         {
             Name = name;
-        }
+        }        
+        public void SetPhone(List<Phone> phones)
+        {
+            Phones = phones;
+        }        
         public void SetAddress(Address address)
         {
             Address = address;
@@ -50,13 +43,19 @@ namespace ListaTelefone
         {
             Email = email;
         }
-        public void ContactToString()
+        public override string ToString()
         {
-            Console.WriteLine($"Nome:\n {Name};");
-            Console.WriteLine($"Telefones:");
-            PhoneList.Print();
-            Console.WriteLine($"{Address.ToString()}");
-            Console.WriteLine($"Email:\n{Email};");
+            return Name + ";" + PhoneNumbers() + ";" + Address.ToString() + ";" + Email;
+        }
+
+        public string PhoneNumbers() 
+        {
+            string listPhone = null;
+            foreach (Phone item in Phones)
+            {
+                listPhone += item.ToString() + ",";
+            }
+            return listPhone;
         }
     }
 }

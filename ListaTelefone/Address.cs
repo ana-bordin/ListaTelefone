@@ -31,10 +31,7 @@ namespace ListaTelefone
 
         public override string? ToString()
         {
-            string valor = $"\nEndereco:\nCEP:{ZipCode};\nLocalidade: {City},{State};\nLogradouro:{TypePatio} {StreetAvenue}, nº {Number};\nBairro: {Neighborhood};";
-            if (this.Complement != "")
-                valor += $"\nComplemento: {Complement};";
-            return valor;
+            return ZipCode + "," + City + "," + State + "," + TypePatio + "," + StreetAvenue + "," + Neighborhood + "," +  Number + "," + Complement + ",";
         }
     }
 }
